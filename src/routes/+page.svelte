@@ -1,20 +1,23 @@
 <script>
-  import Header from '$lib/Header.svelte'
-  import BulmaExamples from '$lib/BulmaExamples.svelte'
+  import Header from "../lib/Header.svelte"
+  let books = []
+  function addBook() {
+    books = [...books, ""]
+  }
 </script>
 
 <Header />
-
 <main class="content section">
-  <h2>SvelteKit</h2>
+  <button on:click={addBook}>Add Book</button>
 
-  <p>Welcome to coding with SvelteKit, a modern JavaScript framework that makes it easy to code great apps.</p>
-
-  <p>This template comes loaded with the <a href="https://bulma.io/documentation/">Bulma CSS framework</a>, so you can save time and focus on your project.</p>
-
-  <p>Here's some examples of colour helpers. You can change the colours in <code>theme.scss</code></p>
-  <BulmaExamples />
+  {#each books as book, index}
+    <input type="text" bind:value={books[index]} />
+  {/each}
 </main>
+
+<!-- Steps: Make addbook have details of title and author 
+ Give the books a read/unread tick box beside each - might have to have a confirm for this so that it saves to local storage
+ Make all changes save to local storage and can reload-->
 
 <footer class="footer">
   <p class="has-text-centered">&copy; Craighead Diocesan School 2025</p>
